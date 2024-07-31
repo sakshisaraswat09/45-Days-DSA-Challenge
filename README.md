@@ -1,2 +1,2 @@
-# 45-Days-DSA-Challenge
-This repository tracks my progress in the #CrackYourPlacement challenge.
+# 45-Days-DSA-Challenge #CrackYourPlacement Challenge
+Welcome to my journey through the #CrackYourInternship and #CrackYourPlacement challenges. This repository will track my progress as I work through the DSA Sheet by Arsh Goyal.
