@@ -1,0 +1,66 @@
+//{ Driver Code Starts
+// Initial Template for C++
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution {
+  public:
+    void dfs(vector<vector<int>>& grid,vector<vector<int>>& vis, int sr, int sc,int& r,int& c,vector<pair<int,int>>& v){
+        vis[sr][sc]=1;
+        v.push_back({sr-r,sc-c});
+        
+        int dRow[]={-1,0,1,0};
+        int dCol[]={0,-1,0,1};
+        
+        for(int i=0;i<4;i++){
+            int nRow = sr+dRow[i];
+            int nCol = sc+dCol[i];
+            
+            if(nRow>=0 && nRow<grid.size() && nCol>=0 && nCol<grid[0].size() && grid[nRow][nCol]==1 && vis[nRow][nCol]==0){
+                dfs(grid,vis,nRow,nCol,r,c,v);
+            }
+        }
+    }
+    int countDistinctIslands(vector<vector<int>>& grid) {
+        vector<vector<int>>vis(grid.size(),vector<int>(grid[0].size(),0));
+        set<vector<pair<int,int>>>ans;
+        
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid[0].size();j++){
+                if(grid[i][j]==1 && vis[i][j]==0){
+                    vector<pair<int,int>>v;
+                    dfs(grid,vis,i,j,i,j,v);
+                    ans.insert(v);
+                }
+            }
+        }
+        
+        return ans.size();
+    }
+};
+
+
+//{ Driver Code Starts.
+
+int main() {
+
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+        vector<vector<int>> grid(n, vector<int>(m));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cin >> grid[i][j];
+            }
+        }
+        Solution obj;
+        cout << obj.countDistinctIslands(grid) << endl;
+    }
+}
+// } Driver Code Ends
